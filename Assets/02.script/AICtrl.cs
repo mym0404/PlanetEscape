@@ -13,7 +13,7 @@ public class AICtrl : MonoBehaviour {
     private bool Turning = false;
     private bool Mining = false;
 
-
+    
     //캐릭터의 위치
     public Position pos;
     //애니메이터

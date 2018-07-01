@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class AICtrl : MonoBehaviour {
 
+    
+
     //캐릭터 상태
     private bool Moving = false;
     private bool Turning = false;
@@ -50,6 +52,12 @@ public class AICtrl : MonoBehaviour {
     public GameObject moveCanvas;
 
     private void Awake() {
+
+
+
+        GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetFloat("Disolve Value" , 0.5f);
+
+
 
         pos = new Position(0 , 0);
 

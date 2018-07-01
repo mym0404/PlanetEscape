@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: b10fcd996ed6794439f74c158cce49da
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mineEffect: {fileID: 1156560607973068, guid: f859d2e6c85606447b7be0deb4aee39b,
+      type: 2}
+  - mineEffectPos: {instanceID: 0}
+  - robotTr: {instanceID: 0}
+  - LoadingPanel: {instanceID: 0}
+  - blueCrystal: {instanceID: 0}
+  - redCrystal: {instanceID: 0}
+  - haveCrystal: {instanceID: 0}
+  - moveCanvas: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

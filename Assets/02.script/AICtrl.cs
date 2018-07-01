@@ -23,7 +23,7 @@ public class AICtrl : MonoBehaviour {
     //방향 정보
     private int direction; //0 북 1 동 2 남 3 서
     private int crystalDirection = -1;
-    private int UFODirection = -1;
+    //private int UFODirection = -1;
 
 
     //광물캐는 이펙트

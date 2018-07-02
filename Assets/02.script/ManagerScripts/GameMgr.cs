@@ -50,7 +50,7 @@ public class GameMgr : MonoBehaviour {
                 mapMatrix[i , j] = MatrixState.UFO;
             }
         }
-        mapMatrix[14 , 12] = MatrixState.UFO;
+        mapMatrix[12 , 13] = MatrixState.UFO; //테스트용 UFO 위치
 
         //x는 푸른 크리스탈 , y는 붉은 크리스탈 개수 
         crystalState = new Vector2Int[1];

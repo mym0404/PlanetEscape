@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
+
 
 public class Position {
     private int r;
@@ -55,5 +57,14 @@ public class Position {
         GameMgr.Instance.GetMatrixState(new Position(r   , c-1) , out state);
 
         return state;
+    }
+
+
+    public int GetDistance(Position destPos , out int rRemain, out int cRemain) {
+        rRemain = Mathf.Abs(r - destPos.R);
+        cRemain = Mathf.Abs(c - destPos.C);
+
+
+        return rRemain + cRemain;
     }
 }

@@ -54,11 +54,7 @@ public class AICtrl : MonoBehaviour {
     private void Awake() {
 
 
-
-        GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetFloat("Disolve Value" , 0.5f);
-
-
-
+        
         pos = new Position(0 , 0);
 
 
@@ -84,17 +80,40 @@ public class AICtrl : MonoBehaviour {
         SetPosition(12 , 10);
         GameMgr.Instance.ChangeMatrixState(pos , MatrixState.AI);
 
-        StartCoroutine(GoToCoordinate(new Position(13 , 12)));
+        StartCoroutine(GoToCoordinate(new Position(15 , 12)));
     }
 
-    IEnumerator GoToCoordinate(Position destPos) {
-        TryMove(1);
-        yield return new WaitForSeconds(5.0f);
-        TryMove(1);
-        yield return new WaitForSeconds(5.0f);
-        TryMove(1);
-        yield return new WaitForSeconds(5.0f);
-        StartCoroutine(Mine());
+    IEnumerator GoToCoordinate(Position destPos) { //AI의 이동 인공지능
+        
+
+        int rRemain; //몇행 남았는지
+        int cRemain; //몇열 남았는지
+        int remain; //행,열 합쳐서 몇번 이동해야 하는지
+        int moveDir;
+        
+        //처음에 갈 거리가 0이면 함수를 종료한다
+        remain=pos.GetDistance(destPos ,out rRemain ,out cRemain);
+        if (remain == 0)
+            yield break;
+        
+        //반복문
+        while (remain > 0) {
+            remain=pos.GetDistance(destPos ,out rRemain ,out cRemain);
+        
+            Debug.Log("남은 거리 : " + remain + " 남은 행 : " + rRemain + " 남은 열 : " + cRemain);
+
+            if (cRemain >= rRemain) {
+                TryMove(1);
+            } else {
+                TryMove(2);
+            }
+
+            yield return new WaitForSeconds(5.0f);
+        }
+
+        
+
+        yield break;
     }
 
 
@@ -148,7 +167,6 @@ public class AICtrl : MonoBehaviour {
 
         MoveForward();
         yield return new WaitUntil(() => { return !Moving; });
-        UpdateAround();
     }
     IEnumerator LeftMove() {
 
@@ -160,7 +178,6 @@ public class AICtrl : MonoBehaviour {
 
         MoveForward();
         yield return new WaitUntil(() => { return !Moving; });
-        UpdateAround();
 
     }
     IEnumerator RightMove() {
@@ -171,7 +188,6 @@ public class AICtrl : MonoBehaviour {
 
         MoveForward();
         yield return new WaitUntil(() => { return !Moving; });
-        UpdateAround();
     }
     IEnumerator BackMove() {
 
@@ -182,7 +198,6 @@ public class AICtrl : MonoBehaviour {
 
         MoveForward();
         yield return new WaitUntil(() => { return !Moving; });
-        UpdateAround();
     }
 
     IEnumerator Mine() {
@@ -300,6 +315,8 @@ public class AICtrl : MonoBehaviour {
 
         GameMgr.Instance.ChangeMatrixState(pos , MatrixState.AI);
 
+        //주위 상황을 업데이트한다
+        UpdateAround();
 
         robotAnim.SetTrigger("MOVE");
     }

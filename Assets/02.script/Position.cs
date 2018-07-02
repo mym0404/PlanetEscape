@@ -60,11 +60,25 @@ public class Position {
     }
 
 
-    public int GetDistance(Position destPos , out int rRemain, out int cRemain) {
-        rRemain = Mathf.Abs(r - destPos.R);
-        cRemain = Mathf.Abs(c - destPos.C);
+    public int GetDistance(Position destPos ,out int dir) {
+        int rRemain =destPos.R-r;
+        int cRemain =destPos.C-c;
+
+        int rRemainAbs = Mathf.Abs(rRemain);
+        int cRemainAbs = Mathf.Abs(cRemain);
 
 
-        return rRemain + cRemain;
+        if (cRemainAbs >= rRemainAbs && cRemain >= 0)
+            dir = 1;
+        else if (cRemainAbs >= rRemainAbs && cRemain < 0)
+            dir = 3;
+        else if (cRemainAbs < rRemainAbs && rRemain >= 0)
+            dir = 2;
+        else if (cRemainAbs < rRemainAbs && rRemain < 0)
+            dir = 0;
+        else
+            dir = -1;
+
+        return rRemainAbs + cRemainAbs;
     }
 }

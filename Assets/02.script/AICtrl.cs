@@ -80,35 +80,38 @@ public class AICtrl : MonoBehaviour {
         SetPosition(12 , 10);
         GameMgr.Instance.ChangeMatrixState(pos , MatrixState.AI);
 
-        StartCoroutine(GoToCoordinate(new Position(15 , 12)));
+        StartCoroutine(GoToCoordinate(new Position(25 , 25)));
     }
 
-    IEnumerator GoToCoordinate(Position destPos) { //AI의 이동 인공지능
-        
+    /// <summary>
+    /// AI Function
+    /// </summary>
+    /// <param name="destPos"></param>
+    /// <returns></returns>
+    IEnumerator GoToCoordinate(Position destPos) { 
 
-        int rRemain; //몇행 남았는지
-        int cRemain; //몇열 남았는지
         int remain; //행,열 합쳐서 몇번 이동해야 하는지
         int moveDir;
         
         //처음에 갈 거리가 0이면 함수를 종료한다
-        remain=pos.GetDistance(destPos ,out rRemain ,out cRemain);
+        remain=pos.GetDistance(destPos ,out moveDir);
         if (remain == 0)
             yield break;
         
         //반복문
         while (remain > 0) {
-            remain=pos.GetDistance(destPos ,out rRemain ,out cRemain);
+            remain=pos.GetDistance(destPos ,out moveDir);
         
-            Debug.Log("남은 거리 : " + remain + " 남은 행 : " + rRemain + " 남은 열 : " + cRemain);
+            Debug.Log("남은 거리 : " + remain + " 가야하는 방향 : "+moveDir);
 
-            if (cRemain >= rRemain) {
-                TryMove(1);
-            } else {
-                TryMove(2);
+            if (!TryMove(moveDir)) { //이동 실패시
+
+                //Plan B를 게획한다 => 어떤 방향이 전면에 장애물이 없고 목적지 까지에 최단거리인지 게산한다.
+
+                StartCoroutine(GoToCoordinate(destPos));
             }
 
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(4.0f);
         }
 
         
@@ -118,26 +121,26 @@ public class AICtrl : MonoBehaviour {
 
 
 
-    //이동 시도
-    public void TryMove(int dir) {
+    //이동 시도 이동했으면 true 이동 실패시 false 반환
+    public bool TryMove(int dir) {
 
         //해당 방향이 갈수없는 곳인지 체크
         switch (dir) {
             case 0:
                 if (pos.GetNorthState() != MatrixState.CAN)
-                    return;
+                    return false;
                 break;
             case 1:
                 if (pos.GetEastState() != MatrixState.CAN)
-                    return;
+                    return false;
                 break;
             case 2:
                 if (pos.GetSouthState() != MatrixState.CAN)
-                    return;
+                    return false;
                 break;
             case 3:
                 if (pos.GetWestState() != MatrixState.CAN)
-                    return;
+                    return false;
                 break;
             default:
 
@@ -149,16 +152,16 @@ public class AICtrl : MonoBehaviour {
         //현재 방향과 클릭한 UI의 방향에 따라 어떤 함수를실행시킬것인지 결정한다
         if (dir == direction) {
             StartCoroutine(MoveMove());
-            return;
+            return true;
         } else if (dir + 1 == direction || (dir == 3 && direction == 0)) {//좌회전
             StartCoroutine(LeftMove());
-            return;
+            return true;
         } else if (dir - 1 == direction || (dir == 0 && direction == 3)) {//우회전
             StartCoroutine(RightMove());
-            return;
+            return true;
         } else { // 180도 회전
             StartCoroutine(BackMove());
-            return;
+            return true;
         }
     }
     IEnumerator MoveMove() {

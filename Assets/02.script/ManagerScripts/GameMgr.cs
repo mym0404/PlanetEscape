@@ -109,7 +109,18 @@ public class GameMgr : MonoBehaviour {
             case MatrixState.UFO:
                 state = MatrixState.UFO;
                 return false;
- 
+
+            case MatrixState.PLAYER:
+                state = MatrixState.PLAYER;
+                return false;
+            case MatrixState.AI:
+                state = MatrixState.AI;
+                return false;
+
+            case MatrixState.OUT:
+                state = MatrixState.OUT;
+                return false;
+
             default:
                 state = MatrixState.ERROR;
                 return false;

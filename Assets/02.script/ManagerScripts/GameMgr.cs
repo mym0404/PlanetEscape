@@ -24,6 +24,7 @@ public class GameMgr : MonoBehaviour {
 
     
     //클릭을 방지하는 패널을 설정
+    [HideInInspector]
     public GameObject NonClickPanel;
 
 
@@ -31,11 +32,19 @@ public class GameMgr : MonoBehaviour {
     private MatrixState[,] mapMatrix;
 
     //크리스탈들의 상태
-    private Vector2Int[ ] crystalState;
+    public CrystalInitialization[ ] crystalState;
+    
 
     //크리스탈 점수의 상태
+    [HideInInspector]
     public int score=0;
+    [HideInInspector]
     public int scoreEnemy = 0;
+
+    //인공지능 자동 이동 시간
+    public float GetRandomMoveDeltaTime() {
+        return Random.Range(4f , 6f);
+    }
 
 
     private void Awake() {
@@ -52,14 +61,8 @@ public class GameMgr : MonoBehaviour {
         }
         mapMatrix[12 , 13] = MatrixState.UFO; //테스트용 UFO 위치
 
-        //x는 푸른 크리스탈 , y는 붉은 크리스탈 개수 
-        crystalState = new Vector2Int[1];
-
+         
         
-        for (int i = 0 ; i < crystalState.Length ; i++) {
-            crystalState[i].x = 40;
-            crystalState[i].y = 10;
-        }
 
 
         //논클릭패널
@@ -69,17 +72,19 @@ public class GameMgr : MonoBehaviour {
     //크리스탈의 개수를 보는 함수
     public int GetCrystalState(int id , bool isBlue) {
         if (isBlue) {
-            return crystalState[id].x;
+            return crystalState[id].crystalCount_Blue;
         } else {
-            return crystalState[id].y;
+            return crystalState[id].crystalCount_Red;
         }
     }
     //크리스탈의 개수를 바꾸는 함수
     public void UpdateCrystalState(int id , bool isBlue , int subtract) {
         if (isBlue) {
-            crystalState[id].x -= subtract;
+            crystalState[id].ChangeCrystalCount(true,subtract); //수정요망
+            
+            
         } else {
-            crystalState[id].y -= subtract;
+            crystalState[id].ChangeCrystalCount(false,subtract);
         }
     }
 

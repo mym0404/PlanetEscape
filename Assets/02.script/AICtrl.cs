@@ -44,6 +44,8 @@ public class AICtrl : MonoBehaviour {
     //AI의 상태
     PlayerItem item = PlayerItem.EMPTY;
 
+
+
     //플레이어의 방향을 알아내는 함수
     public int GetDirection() {
         return direction;
@@ -106,9 +108,47 @@ public class AICtrl : MonoBehaviour {
 
             if (!TryMove(moveDir)) { //이동 실패시
 
-                //Plan B를 게획한다 => 어떤 방향이 전면에 장애물이 없고 목적지 까지에 최단거리인지 게산한다.
+                if (moveDir == 0) {//만약 가야하는 방향이 북쪽이었는데 이동이 실패했다면,
+                    //동쪽으로 이동 시도
+                    if (!TryMove(1)) {
+                        //남쪽으로 이동 시도
+                        if (!TryMove(2)) {
+                            //서쪽으로 이동 시도
+                            if (!TryMove(3)) {
+                                Debug.Log("이동 실패");
+                            }
+                        }
+                    }
+                } else if (moveDir == 1) {
+                    if (!TryMove(2)) {
+                        if (!TryMove(3)) {
+                            if (!TryMove(0)) {
+                                Debug.Log("이동 실패");
+                            }
+                        }
+                    }
+                }else if (moveDir == 2) {
+                    if (!TryMove(3)) {
+                        if (!TryMove(0)) {
+                            if (!TryMove(1)) {
+                                Debug.Log("이동 실패");
+                            }
+                        }
+                    }
+                }else if (moveDir == 3) {
+                    if (!TryMove(0)) {
+                        if (!TryMove(1)) {
+                            if (!TryMove(2)) {
+                                Debug.Log("이동 실패");
+                            }
+                        }
+                    }
+                }
+                
 
-                StartCoroutine(GoToCoordinate(destPos));
+                
+                
+                
             }
 
             yield return new WaitForSeconds(4.0f);

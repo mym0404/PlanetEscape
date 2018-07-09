@@ -35,6 +35,8 @@ public class PlayerCtrl : MonoBehaviour {
     public GameObject redCrystal;
     private GameObject haveCrystal=null;
 
+    
+
     //플레이어의 방향을 알아내는 함수
     public int GetDirection() {
         return direction;
@@ -81,20 +83,29 @@ public class PlayerCtrl : MonoBehaviour {
         //갈수없는 곳인지 체크
         switch (dir) {
             case 0:
-                if (pos.GetNorthState() != MatrixState.CAN && PlayerMgr.Instance.Mining==false)
+                if (pos.GetNorthState() != MatrixState.CAN && PlayerMgr.Instance.Mining == false) {
+                    moveCanvas.GetComponent<MoveUICtrl>().UIAnimationIn();
                     return;
+                }
                 break;
+                
             case 1:
-                if (pos.GetEastState() != MatrixState.CAN && PlayerMgr.Instance.Mining==false)
+                if (pos.GetEastState() != MatrixState.CAN && PlayerMgr.Instance.Mining == false) {
+                    moveCanvas.GetComponent<MoveUICtrl>().UIAnimationIn();
                     return;
+                }
                 break;
             case 2:
-                if (pos.GetSouthState() != MatrixState.CAN && PlayerMgr.Instance.Mining==false)
+                if (pos.GetSouthState() != MatrixState.CAN && PlayerMgr.Instance.Mining == false) {
+                    moveCanvas.GetComponent<MoveUICtrl>().UIAnimationIn();
                     return;
+                }
                 break;
             case 3:
-                if (pos.GetWestState() != MatrixState.CAN && PlayerMgr.Instance.Mining==false)
+                if (pos.GetWestState() != MatrixState.CAN && PlayerMgr.Instance.Mining == false) {
+                    moveCanvas.GetComponent<MoveUICtrl>().UIAnimationIn();
                     return;
+                }
                 break;
             default:
 

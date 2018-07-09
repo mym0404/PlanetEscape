@@ -1767,6 +1767,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &338446384 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114577802126692928, guid: 0e7a00822e005c1459b976da8968d456,
+    type: 2}
+  m_PrefabInternal: {fileID: 1674383069}
+  m_Script: {fileID: 11500000, guid: 1d55ecc548aea1a4fb9d384721a810c4, type: 3}
 --- !u!224 &375797880 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224928866626795826, guid: b3ead39e7cf1ef745a7421f7af2cb9ae,
@@ -3381,6 +3387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NonClickPanel: {fileID: 0}
+  crystalState:
+  - {fileID: 338446384}
   score: 0
   scoreEnemy: 0
 --- !u!4 &956840610
@@ -3620,6 +3628,11 @@ Prefab:
       propertyPath: parentObject
       value: 
       objectReference: {fileID: 44470968}
+    - target: {fileID: 114070009204103382, guid: 13d46fa4db092714db1bacc3bf7a03b1,
+        type: 2}
+      propertyPath: moveUICtrl
+      value: 
+      objectReference: {fileID: 484129989}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 13d46fa4db092714db1bacc3bf7a03b1, type: 2}
   m_IsPrefabParent: 0
@@ -4925,11 +4938,6 @@ Prefab:
     - target: {fileID: 4797168047468102, guid: 0e7a00822e005c1459b976da8968d456, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 108930889715961100, guid: 0e7a00822e005c1459b976da8968d456,
-        type: 2}
-      propertyPath: m_CullingMask.m_Bits
-      value: 2816
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e7a00822e005c1459b976da8968d456, type: 2}

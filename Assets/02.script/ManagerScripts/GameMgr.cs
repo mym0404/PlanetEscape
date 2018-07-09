@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum MatrixState { CAN = 0, PLAYER,AI,CRYSTAL,UFO,OUT,ERROR };
 
@@ -22,7 +23,31 @@ public class GameMgr : MonoBehaviour {
     }
     #endregion
 
-    
+    #region Resolution Setting
+    private void SetResolution() {
+        Screen.fullScreen = true;
+
+        int height = Screen.currentResolution.height;
+        int width = Screen.currentResolution.width;
+
+        if (height * (1280 / 800f) > width) {//만약 세로가 게임에 필요한 비율상 더 길다면 수정요명
+            
+            height = (int)(Screen.currentResolution.width * (800 / 1280f));
+        } else {
+            
+            width = (int)(Screen.currentResolution.height * (1280 / 800f));
+        }
+
+        Screen.SetResolution(width,height,FullScreenMode.FullScreenWindow,60);
+        
+
+    }
+    public Text resolutionText;
+    private void OnGUI() {
+        //resolutionText.text = Screen.currentResolution.width + ", " + Screen.currentResolution.height;
+    }
+    #endregion
+
     //클릭을 방지하는 패널을 설정
     [HideInInspector]
     public GameObject NonClickPanel;
@@ -46,9 +71,13 @@ public class GameMgr : MonoBehaviour {
         return Random.Range(4f , 6f);
     }
 
+    private void Update() {
+        resolutionText.text = Screen.currentResolution.width + ", " + Screen.currentResolution.height;
+    }
 
     private void Awake() {
         SetSingleton();
+        SetResolution();
 
         mapMatrix = new MatrixState[30 , 30];
 

@@ -27,6 +27,8 @@ public class GameMgr : MonoBehaviour {
     private void SetResolution() {
         Screen.fullScreen = true;
 
+        
+
         int height = Screen.currentResolution.height;
         int width = Screen.currentResolution.width;
 

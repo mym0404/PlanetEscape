@@ -31,23 +31,38 @@ public class GameMgr : MonoBehaviour {
 
         int height = Screen.currentResolution.height;
         int width = Screen.currentResolution.width;
-
-        if (height * (1280 / 800f) > width) {//만약 세로가 게임에 필요한 비율상 더 길다면 수정요명
+        /*
+        if (height * (1.6) > width) {//만약 세로가 게임에 필요한 비율상 더 길다면 수정요명
             
             height = (int)(Screen.currentResolution.width * (800 / 1280f));
         } else {
             
             width = (int)(Screen.currentResolution.height * (1280 / 800f));
         }
-
-        Screen.SetResolution(width,height,FullScreenMode.FullScreenWindow,60);
-        
+        */
+        //Screen.SetResolution(width,height,FullScreenMode.FullScreenWindow,60);
+        Screen.SetResolution(1280,800,FullScreenMode.FullScreenWindow,60);
 
     }
     public Text resolutionText;
     private void OnGUI() {
         //resolutionText.text = Screen.currentResolution.width + ", " + Screen.currentResolution.height;
     }
+    #endregion
+
+    #region UnitID Setting
+
+    private List<int> unitIDList = new List<int>();
+
+    public bool RegisterID(int id) {
+        if (!unitIDList.Contains(id)) {
+            unitIDList.Add(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     #endregion
 
     //클릭을 방지하는 패널을 설정

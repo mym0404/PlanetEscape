@@ -5,37 +5,31 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PlayerRaycastTarget : MonoBehaviour,IPointerClickHandler {
-    Transform tr;
-    Vector2 UIPos;
+    private Transform tr;
+    public GameObject HUD;
+    private GameObject hud_temp;
 
-    public GameObject ProfileCanvas;
-    public GameObject ProfileImage;
-
-    private GameObject profile;
+    private bool isOn=false;
 
     private void Awake() {
         tr = transform;
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-        if (PlayerMgr.Instance.isProfileImageOn == false) {
-            UIPos = RectTransformUtility.WorldToScreenPoint(Camera.main , tr.position + Vector3.up * 5);
-            profile=Instantiate(ProfileImage , UIPos , Quaternion.identity , ProfileCanvas.GetComponent<RectTransform>());
-            PlayerMgr.Instance.isProfileImageOn = true;
-        } else {
-            DestroyImmediate(profile);
-            PlayerMgr.Instance.isProfileImageOn = false;
-        }
+        SetHUD();
         
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void SetHUD() {
+        if (!isOn) {//만약 HUD 이펙트가 꺼져있다면 
+            isOn = true;
+            hud_temp = Instantiate(HUD , tr.transform.position , Quaternion.identity , tr);
+        } else {//만약 HUD 이펙트가 켜져있다면
+            isOn = false;
+            DestroyImmediate(hud_temp);
+        }
+    }
+
+
+
 }

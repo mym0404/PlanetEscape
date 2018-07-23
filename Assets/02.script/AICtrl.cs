@@ -18,6 +18,8 @@ public class AICtrl : MonoBehaviour {
     
     //캐릭터의 위치
     public Position pos;
+    public int startPos_R;
+    public int startPos_C; 
     //애니메이터
     private Animator moveAnim;
     private Animator robotAnim;
@@ -56,8 +58,9 @@ public class AICtrl : MonoBehaviour {
     private void Awake() {
 
 
-        
-        pos = new Position(0 , 0);
+        pos = new Position(startPos_R , startPos_C);
+        //방향 지정
+        direction = 2;
 
 
 
@@ -76,12 +79,12 @@ public class AICtrl : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        //방향 지정
-        direction = 2;
-        //현재 위치를 지정하고 이 위치의 타일 상태를 AI로 변경한다.
-        SetPosition(12 , 10);
+        
+        ScriptMgr.Instance.UpdateTransform(GetComponent<Identifier>().GetID());
+
         GameMgr.Instance.ChangeMatrixState(pos , MatrixState.AI);
 
+        //이동 코루틴 시작 TODO
         StartCoroutine(GoToCoordinate(new Position(25 , 25)));
     }
 
@@ -104,7 +107,7 @@ public class AICtrl : MonoBehaviour {
         while (remain > 0) {
             remain=pos.GetDistance(destPos ,out moveDir);
         
-            Debug.Log("남은 거리 : " + remain + " 가야하는 방향 : "+moveDir);
+            //Debug.Log("남은 거리 : " + remain + " 가야하는 방향 : "+moveDir);
 
             if (!TryMove(moveDir)) { //이동 실패시
 

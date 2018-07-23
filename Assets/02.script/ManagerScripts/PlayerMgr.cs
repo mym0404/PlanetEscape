@@ -41,7 +41,9 @@ public class PlayerMgr : MonoBehaviour {
     }
     #endregion
 
-
+    //HUD가 어떤 유닛을 가리키고 있는지 상태
+    public int HUD_Target = -1;
+    public GameObject HUD_Object = null;
 
     public PlayerItem item = PlayerItem.EMPTY;
 

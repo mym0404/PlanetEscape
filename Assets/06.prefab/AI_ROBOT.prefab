@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4840669340095142}
   - component: {fileID: 198622881430344724}
   - component: {fileID: 199585417983281040}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SubEngine_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4885360699839934}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Arm.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4975807353030328}
   - component: {fileID: 137395990653830660}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: ROBOT_MESH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4774864463041994}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4038625027783618}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Hand.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4239921249001346}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 4801675941768620}
   - component: {fileID: 198467590192525100}
   - component: {fileID: 199241176475107966}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sprays_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 4879354182908212}
   - component: {fileID: 198547698470678910}
   - component: {fileID: 199168470970896442}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SubEngine_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4035877716056214}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Arm.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4924333823794904}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Hand.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4415098288182642}
   - component: {fileID: 108328435114398820}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 4998869935434238}
   - component: {fileID: 198905186367937038}
   - component: {fileID: 199348288198176522}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sprays_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4254925672681130}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 4820764268223988}
   - component: {fileID: 95786222650553240}
   - component: {fileID: 114063828810578368}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,9 +245,10 @@ GameObject:
   - component: {fileID: 95721106822747932}
   - component: {fileID: 136544679529804384}
   - component: {fileID: 114189196658405170}
-  m_Layer: 9
+  - component: {fileID: 114761094441004644}
+  m_Layer: 12
   m_Name: AI_ROBOT
-  m_TagString: Untagged
+  m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,7 +261,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4019106387373280}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Hand.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +278,7 @@ GameObject:
   - component: {fileID: 4537399414153802}
   - component: {fileID: 198850226933376118}
   - component: {fileID: 199737099921841330}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MainEngine_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +293,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4264649842222954}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Hand.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +310,7 @@ GameObject:
   - component: {fileID: 4133050344226988}
   - component: {fileID: 198117474274478582}
   - component: {fileID: 199993529495759182}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MaineEngine_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +325,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4174030197265442}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bottom_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +340,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4491280970248800}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +357,7 @@ GameObject:
   - component: {fileID: 4054087236078278}
   - component: {fileID: 198839569702143290}
   - component: {fileID: 199076522617420162}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sprays_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +374,7 @@ GameObject:
   - component: {fileID: 4806612022346858}
   - component: {fileID: 198082945477761354}
   - component: {fileID: 199976353523725888}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sprays_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +389,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4017714502573658}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +404,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4044667700107526}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Head_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -873,6 +874,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HUD: {fileID: 1222533011097096, guid: 155e30728f5519e4884a5b156d0d33f0, type: 2}
+--- !u!114 &114761094441004644
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1589271362718972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad5a1acf3098a5458096b16e035f350, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitID: 2
 --- !u!136 &136544679529804384
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -882,8 +895,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.93
+  m_Radius: 0.7
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.91, z: 0}
 --- !u!137 &137395990653830660

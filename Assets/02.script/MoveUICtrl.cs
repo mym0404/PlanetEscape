@@ -114,7 +114,7 @@ public class MoveUICtrl : MonoBehaviour{
 
         if (crystalDirection!=-1 && PlayerMgr.Instance.item==PlayerItem.EMPTY) {//크리스탈 옆에 있고 크리스탈을 안갖고 있다면
             
-            GameObject.Find("Canvas-Overlay").SendMessage("ChangeMineButtonState" , true , 
+            GameObject.FindGameObjectWithTag("CANVASOVERLAY").SendMessage("ChangeMineButtonState" , true , 
                 SendMessageOptions.DontRequireReceiver);
 
         }
@@ -122,7 +122,7 @@ public class MoveUICtrl : MonoBehaviour{
         if (UFODirection != -1 && (PlayerMgr.Instance.item==PlayerItem.BLUECRYSTAL
             ||PlayerMgr.Instance.item==PlayerItem.REDCRYSTAL)) {//UFO가 옆에 있고 크리스탈을 갖고 있다면
             
-            GameObject.Find("Canvas-Overlay").SendMessage("ChangeDropButtonState" , true , 
+            GameObject.FindGameObjectWithTag("CANVASOVERLAY").SendMessage("ChangeDropButtonState" , true , 
                 SendMessageOptions.DontRequireReceiver);
 
         }

@@ -52,15 +52,40 @@ public class GameMgr : MonoBehaviour {
 
     #region UnitID Setting
 
-    private List<int> unitIDList = new List<int>();
+    private int ID_TEAM1_PLAYER { get; set; }
+    private int ID_TEAM1_AI1 { get; set; }
+    private int ID_TEAM1_AI2 { get; set; }
+    private int ID_TEAM2_PLAYER { get; set; }
+    private int ID_TEAM2_AI1 { get; set; }
+    private int ID_TEAM2_AI2 { get; set; }
 
-    public bool RegisterID(int id) {
-        if (!unitIDList.Contains(id)) {
-            unitIDList.Add(id);
-            return true;
-        } else {
-            return false;
+    [HideInInspector]
+    public int myTeam=1; //수정 요망 네트워크로 받게 해야함 
+    [HideInInspector]
+    public int myID=1; //수정 요망
+
+    private void SetUnitID() {
+        ID_TEAM1_PLAYER = 1;
+        ID_TEAM1_AI1 = 2;
+        ID_TEAM1_AI2 = 3;
+        ID_TEAM2_PLAYER = 4;
+        ID_TEAM2_AI1 = 5;
+        ID_TEAM2_AI2 = 6;
+    }
+    //아이디를 가지고 해당 로봇 객체를 리턴해주는 함수
+    public GameObject GetObjectWithID(int id) {
+
+        foreach (GameObject o in GameObject.FindGameObjectsWithTag("AI")) {
+            if (o.GetComponent<Identifier>().GetID() == id) {
+                return o;
+            }
         }
+        foreach (GameObject o in GameObject.FindGameObjectsWithTag("PLAYER")) {
+            if (o.GetComponent<Identifier>().GetID() == id) {
+                return o;
+            }
+        }
+        return null;
     }
 
     #endregion
@@ -95,6 +120,7 @@ public class GameMgr : MonoBehaviour {
     private void Awake() {
         SetSingleton();
         SetResolution();
+        SetUnitID(); //없앨수도
 
         mapMatrix = new MatrixState[30 , 30];
 
@@ -115,6 +141,8 @@ public class GameMgr : MonoBehaviour {
         NonClickPanel = GameObject.FindGameObjectWithTag("NONCLICKPANEL");
         NonClickPanel.SetActive(false);
     }
+
+    #region crystal state get,set
     //크리스탈의 개수를 보는 함수
     public int GetCrystalState(int id , bool isBlue) {
         if (isBlue) {
@@ -133,8 +161,9 @@ public class GameMgr : MonoBehaviour {
             crystalState[id].ChangeCrystalCount(false,subtract);
         }
     }
+    #endregion
 
-
+    #region map matrix state get,set
     //맵 매트릭스의 한칸한칸의 상태를 바꾸는 함수
     public void ChangeMatrixState(Position pos, MatrixState state) {
         mapMatrix[pos.R , pos.C] = state;
@@ -179,5 +208,22 @@ public class GameMgr : MonoBehaviour {
         }
 
     }
+    #endregion
+
+    #region fire
+
+    public void FireRobot(int IDfrom,int IDto) {
+        GameObject Obj_from = GetObjectWithID(IDfrom);
+        GameObject Obj_to = GetObjectWithID(IDto);
+
+        if (Obj_from == null || Obj_to == null) {
+            throw new System.Exception("발사를 하려는데 객체가 없습니다");
+            return;
+        }
+
+        Debug.Log(IDfrom.ToString() + " fire=> " + IDto.ToString());
+
+    }
+    #endregion
 
 }

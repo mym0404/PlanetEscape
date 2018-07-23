@@ -7,6 +7,9 @@ TagManager:
   - EXP_BOX
   - PLAYER
   - NONCLICKPANEL
+  - HUD
+  - CANVASOVERLAY
+  - AI
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - PLAYER
   - UFO
   - CRYSTAL
-  - 
+  - AI
   - 
   - 
   - 

@@ -6,10 +6,12 @@ using EasyUIAnimator;
 
 public class CanvasOverlayCtrl : MonoBehaviour {
     //채굴, 수거 버튼
-    public Button mineBlue;
-    public Button mineRed;
-    public Button dropBtn;
-    
+    public Button mineBlue; //1
+    public Button mineRed; //2 
+    public Button dropBtn; //3
+    //발사 버튼
+    public Button fireBtn; //4
+
     public GameObject player;
     public MoveUICtrl uiCtrl;
 
@@ -21,6 +23,10 @@ public class CanvasOverlayCtrl : MonoBehaviour {
     private UISpriteAnimation fadeoutRed;
     private UISpriteAnimation fadeinDrop;
     private UISpriteAnimation fadeoutDrop;
+    //발사 애니메이션
+    private UISpriteAnimation fadeinFire;
+    private UISpriteAnimation fadeoutFire;
+
 
     public Text scoreText;
 
@@ -39,9 +45,16 @@ public class CanvasOverlayCtrl : MonoBehaviour {
         fadeinDrop=UIAnimator.ChangeColorTo(dropBtn.gameObject.GetComponent<Image>() , new Color(1 , 1 , 1 , 1) , 0.5f);
         fadeoutDrop= UIAnimator.ChangeColorTo(dropBtn.gameObject.GetComponent<Image>()
             , new Color(1 , 1 , 1 , 100/255f) , 0.5f);
+
+        fadeinFire=UIAnimator.ChangeColorTo(fireBtn.gameObject.GetComponent<Image>() , new Color(1 , 1 , 1 , 1) , 0.5f);
+        fadeoutFire= UIAnimator.ChangeColorTo(fireBtn.gameObject.GetComponent<Image>()
+            , new Color(1 , 1 , 1 , 100/255f) , 0.5f);
     }
 
 
+    #region Button State Change
+
+    //채굴 버튼의 상태가 변할 때
     void ChangeMineButtonState(bool On) {
 
         if (PlayerMgr.Instance.item != PlayerItem.EMPTY)
@@ -63,8 +76,32 @@ public class CanvasOverlayCtrl : MonoBehaviour {
 
         }
     }
+    //드랍 버튼의 상태가 변할 때
+    void ChangeDropButtonState(bool On) {
+        if (On) {
+            dropBtn.interactable = true;
+            fadeinDrop.Play();
+        } else {
+            dropBtn.interactable = false;
+            fadeoutDrop.Play();
+        }
+    }
 
-    
+    //발사 버튼의 상태가 변할 때
+    void ChangeFireButtonState(bool On) {
+        if (On) {
+            fireBtn.interactable = true;
+            fadeinFire.Play();
+        } else {
+            fireBtn.interactable = false;
+            fadeinFire.Play();
+        }
+    }
+
+    #endregion
+
+    #region ButtonClick
+    //채굴버튼 클릭
     public void OnClickBlueMine() {
         Collider[ ] colliders = Physics.OverlapSphere(player.transform.position , 5 , 1<<11);
         //주변에 있는 크리스탈에 광물이 남아있는지 체크한다
@@ -119,16 +156,7 @@ public class CanvasOverlayCtrl : MonoBehaviour {
         player.SendMessage("ClickMoveBtns" , uiCtrl.CrystalDirection , SendMessageOptions.DontRequireReceiver);
     }
 
-    void ChangeDropButtonState(bool On) {
-        if (On) {
-            dropBtn.interactable = true;
-            fadeinDrop.Play();
-        } else {
-            dropBtn.interactable = false;
-            fadeoutDrop.Play();
-        }
-    }
-
+    //드랍버튼 클릭
     public void OnClickDrop() {
 
         if (PlayerMgr.Instance.item == PlayerItem.BLUECRYSTAL) {
@@ -151,6 +179,16 @@ public class CanvasOverlayCtrl : MonoBehaviour {
 
         
     }
+
+    //발사버튼 클릭
+    public void OnClickFire() {
+        GameMgr.Instance.FireRobot(GameMgr.Instance.myID , PlayerMgr.Instance.HUD_Target);
+    }
+
+
+    #endregion
+
+    #region ScoreUpdate Routine
     //스코어를 업데이트한다.
     public void UpdateScore(bool myScore, int add) {
         Debug.Log("UpdateScore 함수 호출");
@@ -158,8 +196,6 @@ public class CanvasOverlayCtrl : MonoBehaviour {
         
     }
     bool isScoreCoroutining = false;
-
-
     IEnumerator ScoreCoroutine(bool myScore,int add) {
 
         Debug.Log("코루틴 호출");
@@ -208,4 +244,5 @@ public class CanvasOverlayCtrl : MonoBehaviour {
 
         isScoreCoroutining = false;
     }
+    #endregion
 }

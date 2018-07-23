@@ -10,6 +10,9 @@ public class PlayerCtrl : MonoBehaviour {
 
     //캐릭터의 위치
     public Position pos;
+    public int startPos_R;
+    public int startPos_C;
+
     //애니메이터
     private Animator moveAnim;
     private Animator robotAnim;
@@ -42,14 +45,23 @@ public class PlayerCtrl : MonoBehaviour {
         return direction;
     }
 
+    //포지션을 지정하는 함수
+    public void SetPosition(int r , int c) {
+        pos.R = r;
+        pos.C = c;
+    }
+
     public GameObject moveCanvas;
 
     private void Awake() {
 
         pos = new Position(0,0);
-
-
+        //방향 지정
+        direction = 2;
+        //현재 위치를 지정하고 이 위치의 타일 상태를 플레이어로 변경한다.
+        SetPosition(startPos_R , startPos_C);
         
+
 
         moveAnim = GetComponentsInChildren<Animator>()[0];
         robotAnim = GetComponentsInChildren<Animator>()[1];
@@ -57,18 +69,14 @@ public class PlayerCtrl : MonoBehaviour {
         camCtrl = Camera.main.GetComponent<CameraCtrl>();
     }
 
-    public void SetPosition(int r , int c) {
-        pos.R = r;
-        pos.C = c;
-    }
+
     
 
     // Use this for initialization
     void Start () {
-        //방향 지정
-        direction = 2;
-        //현재 위치를 지정하고 이 위치의 타일 상태를 플레이어로 변경한다.
-        SetPosition(12 , 12);
+        ScriptMgr.Instance.UpdateTransform(GetComponent<Identifier>().GetID());
+
+
         GameMgr.Instance.ChangeMatrixState(pos , MatrixState.PLAYER);
 	}
 	
@@ -113,10 +121,10 @@ public class PlayerCtrl : MonoBehaviour {
         }
         
         //채굴버튼을 끈다
-        GameObject.Find("Canvas-Overlay").SendMessage
+        GameObject.FindGameObjectWithTag("CANVASOVERLAY").SendMessage
             ("ChangeMineButtonState" , false , SendMessageOptions.DontRequireReceiver);
         //드랍버튼을 끈다
-        GameObject.Find("Canvas-Overlay").SendMessage
+        GameObject.FindGameObjectWithTag("CANVASOVERLAY").SendMessage
             ("ChangeDropButtonState" , false , SendMessageOptions.DontRequireReceiver);
 
 
@@ -139,6 +147,9 @@ public class PlayerCtrl : MonoBehaviour {
             return;
         }
     }
+
+
+    
     IEnumerator MoveMove() {
 
         if (PlayerMgr.Instance.Mining) {
@@ -202,7 +213,7 @@ public class PlayerCtrl : MonoBehaviour {
 
         moveCanvas.SendMessage("UIAnimationIn" , SendMessageOptions.DontRequireReceiver);
     }
-
+    //채굴 코루틴
     IEnumerator Mine() {
         Debug.Log("채집 시작");
         

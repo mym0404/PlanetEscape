@@ -114,7 +114,7 @@ public class GameMgr : MonoBehaviour {
     }
 
     private void Update() {
-        resolutionText.text = Screen.currentResolution.width + ", " + Screen.currentResolution.height;
+        
     }
 
     private void Awake() {
